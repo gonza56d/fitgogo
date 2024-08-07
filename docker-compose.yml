@@ -1,6 +1,7 @@
 version: '3.8'
 
 services:
+
   fitgogo:
     build:
       context: ./fitgogo
@@ -10,3 +11,15 @@ services:
     volumes:
       - ./fitgogo:/app
     command: ["./main"]
+
+  mongo:
+    image: mongo:4.4.27-rc0
+    env_file:
+      - .env
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
